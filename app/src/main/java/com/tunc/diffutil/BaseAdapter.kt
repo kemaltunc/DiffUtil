@@ -26,7 +26,7 @@ abstract class BaseAdapter<M : RecyclerItem, VH : BaseViewHolder<M>> :
 
     class DiffCallback<M : RecyclerItem> : DiffUtil.ItemCallback<M>() {
         override fun areItemsTheSame(oldItem: M, newItem: M) =
-            oldItem.compareCode == newItem.compareCode
+            oldItem.comporeId == newItem.comporeId
 
         @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(oldItem: M, newItem: M) = oldItem == newItem

@@ -4,10 +4,10 @@ import androidx.annotation.LayoutRes
 
 
 sealed class ContentItem(
-    @LayoutRes layout: Int, compareId: Int,
+    @LayoutRes layoutId: Int, compareId: Int,
     var content: Content? = null,
     var content2: Content2? = null
-) : RecyclerItem(layout, compareId)
+) : RecyclerItem(layoutId, compareId)
 
 data class Content(
     var id: Int,
