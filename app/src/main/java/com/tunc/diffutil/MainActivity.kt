@@ -9,6 +9,8 @@ class MainActivity : AppCompatActivity(), Callback {
 
     val adapter = ContentAdapter(this)
 
+    var tempList: List<ContentItem> = emptyList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,12 +18,12 @@ class MainActivity : AppCompatActivity(), Callback {
         recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recycler.adapter = adapter
         fillAdapter()
-
     }
 
 
     private fun fillAdapter() {
-        adapter.items = listOf(
+
+        tempList = listOf(
             Content(1, "text1", "23213"),
             Content(2, "text2", "23123"),
             Content(3, "text3", "123123"),
@@ -30,6 +32,8 @@ class MainActivity : AppCompatActivity(), Callback {
             Content2(6, "text4", "123123"),
             Content2(7, "text4", "123123")
         )
+
+        adapter.items = tempList
 
     }
 

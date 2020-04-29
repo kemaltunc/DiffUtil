@@ -5,7 +5,7 @@ import kotlinx.android.synthetic.main.view_item.view.*
 
 
 class ContentAdapter(private val callback: Callback) :
-    BaseAdapter<RecyclerItem, BaseViewHolder<RecyclerItem>>() {
+    BaseAdapter<ContentItem, BaseViewHolder<ContentItem>>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -19,12 +19,13 @@ class ContentAdapter(private val callback: Callback) :
         else -> {
             ContentViewHolder(parent, callback)
         }
-    } as BaseViewHolder<RecyclerItem>
+    } as BaseViewHolder<ContentItem>
 
 
 }
 
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class ContentViewHolder(
     parent: ViewGroup,
     private val callback: Callback
@@ -37,6 +38,7 @@ class ContentViewHolder(
             remove_button.setOnClickListener {
                 callback.removeItem(item)
             }
+
 
         }
     }
