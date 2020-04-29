@@ -3,14 +3,15 @@ package com.tunc.diffutil
 import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import kotlin.properties.Delegates
 
 abstract class BaseAdapter<M : RecyclerItem, VH : BaseViewHolder<M>> :
-    androidx.recyclerview.widget.ListAdapter<M, VH>(DiffCallback<M>()) {
+    ListAdapter<M, VH>(DiffCallback<M>()) {
 
 
     var items: List<M> by Delegates.observable(emptyList()) { prop, old, new ->
-        this@BaseAdapter.submitList(items.toMutableList())
+        this@BaseAdapter.submitList(items)
     }
 
     override fun getItemViewType(position: Int) = getItem(position).layoutId
@@ -25,7 +26,7 @@ abstract class BaseAdapter<M : RecyclerItem, VH : BaseViewHolder<M>> :
 
     class DiffCallback<M : RecyclerItem> : DiffUtil.ItemCallback<M>() {
         override fun areItemsTheSame(oldItem: M, newItem: M) =
-            oldItem.hashCode() == newItem.hashCode()
+            oldItem.compareCode == newItem.compareCode
 
         @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(oldItem: M, newItem: M) = oldItem == newItem
